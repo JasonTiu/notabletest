@@ -4,7 +4,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -15,11 +17,13 @@ public class AppointmentConfig {
     CommandLineRunner commandLineRunnerApp(AppointmentRepository repository) {
         return  args ->
         {
-            Date today = new Date();
+            LocalDate today = LocalDate.now();
+            LocalTime currTime = LocalTime.of(8,15);
             Appointment newPatient = new Appointment(
                     "tre",
                     "three",
                     today,
+                    currTime,
                     "new patient",
                     1L
 

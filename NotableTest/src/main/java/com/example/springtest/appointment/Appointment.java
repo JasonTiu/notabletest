@@ -1,7 +1,9 @@
 package com.example.springtest.appointment;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 @Entity
@@ -19,28 +21,23 @@ public class Appointment {
             generator =  "appointment_sequence"
     )
     private Long id;
+    private Long docId;
     private String firstName;
     private String lastName;
-    private Date dateTime;
+    private LocalDate date;
+    private LocalTime appTime;
     private String kind;
-    private Long docId;
+
+
 
     public Appointment() {
     }
 
-    public Appointment(Long id, String firstName, String lastName, Date dateTime, String kind, Long docId) {
-        this.id = id;
+    public Appointment( String firstName, String lastName, LocalDate date, LocalTime appTime, String kind, Long docId) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.dateTime = dateTime;
-        this.kind = kind;
-        this.docId = docId;
-    }
-
-    public Appointment(String firstName, String lastName, Date dateTime, String kind, Long docId) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateTime = dateTime;
+        this.date = date;
+        this.appTime = appTime;
         this.kind = kind;
         this.docId = docId;
     }
@@ -69,12 +66,20 @@ public class Appointment {
         this.lastName = lastName;
     }
 
-    public Date getDateTime() {
-        return dateTime;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setDateTime(Date dateTime) {
-        this.dateTime = dateTime;
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalTime getAppTime() {
+        return appTime;
+    }
+
+    public void setAppTime(LocalTime appTime) {
+        this.appTime = appTime;
     }
 
     public String getKind() {
