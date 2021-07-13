@@ -33,7 +33,8 @@ Appointment Example:
     "id": 3,
     "firstName": "max",
     "lastName": "azuzk",
-    "dateTime": "2021-07-03T18:44:19.887+00:00",
+    "date": "2021-07-03",
+    "appTime": "8:30:00",
     "kind": "New Patient",
     "docId": 1
 }
