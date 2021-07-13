@@ -1,12 +1,9 @@
 package com.example.springtest.appointment;
 
 
-import com.example.springtest.doctor.Doctor;
-import com.example.springtest.doctor.DoctorRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Date;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -24,6 +21,15 @@ public class AppointmentService {
 
 
     public void addAppointment(Appointment appointment) {
+        if (appointment.getAppTime().getMinute() % 15 != 0)
+        {
+            throw new IllegalStateException("app not 15 min interval");
+        }
+        else if(appointmentRepository.maxThreeApps(appointment.getDocId(),appointment.getAppTime()) >= 3)
+        {
+            throw new IllegalStateException("app time slot is full");
+        }
+
         appointmentRepository.save(appointment);
     }
 
@@ -37,8 +43,8 @@ public class AppointmentService {
 
     }
 
-    public List<Appointment> getDocApp(Long docId, Date date) {
+    public List<Appointment> getDocApp(Long docId, LocalTime appTime) {
 
-        return appointmentRepository.findAppByDocTime(docId, date);
+        return appointmentRepository.findAppByDocTime(docId, appTime);
     }
 }

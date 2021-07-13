@@ -3,6 +3,7 @@ package com.example.springtest.appointment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -35,9 +36,9 @@ public class AppointmentController {
     }
 
     @GetMapping(path = "{doctorId}/{appDate}")
-    public List<Appointment> getDocApp(@PathVariable("doctorId")Long docId, @PathVariable("appDate") Date date)
+    public List<Appointment> getDocApp(@PathVariable("doctorId")Long docId, @PathVariable("appDate") LocalTime appTime)
     {
-        return appointmentService.getDocApp(docId, date);
+        return appointmentService.getDocApp(docId, appTime);
     }
 
 }
